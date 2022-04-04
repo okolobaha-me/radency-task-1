@@ -2,7 +2,7 @@ import { getFormatDate, updateCounter } from './instruments';
 import { categories } from './categories';
 
 export function renderNote(name, category, content, dates, elem) {
-  const row = `<tr data-category="${category}">
+  const row = `<tr data-category="${category}" data-isArchived="false">
         <td><img src="${
           categories[category]
         }" alt="category icon" width="20px" class="hello"><span class="name">${name}</span></td>

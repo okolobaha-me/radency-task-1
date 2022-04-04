@@ -18,13 +18,13 @@ export function setCurrentDate(e) {
   return '';
 }
 
-export function updateCounter(category, type = 'main') {
-  categoryCounter[category] = document.querySelectorAll(`[data-category="${category}"]`).length;
-  if (type === 'archive') {
-    archiveCategoryCounter[category] = document.querySelectorAll(
-      `[data-category="${category}-archive"]`,
-    ).length;
-  }
+export function updateCounter(category) {
+  categoryCounter[category] = document.querySelectorAll(
+    `#noteTable [data-category="${category}"]`,
+  ).length;
+  archiveCategoryCounter[category] = document.querySelectorAll(
+    `#archiveTable [data-category="${category}"]`,
+  ).length;
   updateCounterTable(category);
 }
 

@@ -4,4 +4,7 @@ export const refs = {
   datePicker: document.querySelector('#datePicker'),
   noteContent: document.querySelector('#noteContent'),
   addBtn: document.querySelector('[data-type="addNote"]'),
+  archiveBody: document.querySelector('#archiveBody'),
+  toggleArchive: document.querySelector('#toggleArchiveBtn'),
+  archive: document.querySelector('#archiveTable'),
 };
