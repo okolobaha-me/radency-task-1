@@ -1,13 +1,16 @@
 import { getFormatDate, updateCounter } from './instruments';
+import { categories } from './categories';
 
-export function renderNote(icon, name, category, content, dates, elem) {
+export function renderNote(name, category, content, dates, elem) {
   const row = `<tr data-category="${category}">
-        <td class="name">${name}</td>
+        <td><img src="${
+          categories[category]
+        }" alt="category icon" width="20px" class="hello"><span class="name">${name}</span></td>
         <td class="">${getFormatDate()}</td>
-        <td class="category" style="background-color: ${icon};">${category}</td>
+        <td class="category">${category}</td>
         <td class="content">${content}</td>
         <td class="date">${dates}</td>
-        <td class="">
+        <td class="buttons">
         <button type="button" data-type="edit">edit</button>
         <button type="button" data-type="archive">archive</button>
         <button type="button" data-type="delete">del</button>

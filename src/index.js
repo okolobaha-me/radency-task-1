@@ -6,7 +6,7 @@ import { renderNote } from './utlis/rederNote';
 import { refs } from './utlis/refs';
 
 baselineElements.map(({ icon, name, category, content, date }) =>
-  renderNote(icon, name, category, content, date, refs.notesBody),
+  renderNote(name, category, content, date, refs.notesBody),
 );
 
 const onFuncButtonClick = e => {
