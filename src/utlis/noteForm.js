@@ -2,8 +2,10 @@ import { categories, defaultCategory } from './categories';
 import { getFormatDate, setCurrentDate } from './instruments';
 import datepicker from 'js-datepicker';
 import { refs } from './refs';
+import { renderNote } from './rederNote';
 
 let datePicker = null;
+let editableNote = null;
 
 function chooseSelectedCategory(category, prevCategory) {
   if (prevCategory) {
@@ -28,13 +30,13 @@ const noteForm = (type, prevName, prevCategory, prevContent) => {
        )}</select>
      </td>
      <td>
-     <textarea  type="text" name="Content" id="noteContent">${prevContent}</textarea>
+     <textarea  name="Content" id="noteContent">${prevContent}</textarea>
 </td>
      <td>
        <input type="text" name="Dates" id="datePicker" />
      </td>
      <td>
-       <button type="button" id="${type}-done">
+       <button type="button" data-type="done-${type}" id="done">
          done
        </button>
        <button type="button" id="closeEditForm">
@@ -42,6 +44,35 @@ const noteForm = (type, prevName, prevCategory, prevContent) => {
        </button>
      </td>
    </tr>`;
+};
+
+const onDoneBtnClick = e => {
+  const form = e.target.closest('tr');
+  const icon = 'tomato';
+  const name = form.querySelector('#noteName').value;
+  const category = form.querySelector('#categoryPicker').value;
+  const content = form.querySelector('#noteContent').value;
+  const newDate = form.querySelector('#datePicker').value;
+
+  const formType = e.target.getAttribute('data-type');
+  if (formType === 'done-add') {
+    renderNote(icon, name, category, content, newDate, refs.notesBody);
+  } else {
+    editableNote.querySelector('.name').textContent = name;
+    editableNote.querySelector('.category').textContent = category;
+    editableNote.querySelector('.content').textContent = content;
+
+    let date = editableNote.querySelector('.date').textContent.slice(-10);
+    const dateField = editableNote.querySelector('.date');
+    if (date) {
+      date = date === newDate ? date : `${date} => ${newDate}`;
+      dateField.textContent = date;
+    } else {
+      dateField.textContent = newDate;
+    }
+  }
+
+  closeForm();
 };
 
 export const openNoteForm = e => {
@@ -58,10 +89,10 @@ export const openNoteForm = e => {
   if (!btnIsAdd) {
     dateSelected = setCurrentDate(e);
 
-    const note = e.target.closest('tr');
-    name = note.querySelector('.name').textContent;
-    category = note.querySelector('.category').textContent;
-    content = note.querySelector('.content').textContent;
+    editableNote = e.target.closest('tr');
+    name = editableNote.querySelector('.name').textContent;
+    category = editableNote.querySelector('.category').textContent;
+    content = editableNote.querySelector('.content').textContent;
   }
 
   const datepickerOptions = {
@@ -70,6 +101,7 @@ export const openNoteForm = e => {
     },
     dateSelected,
   };
+
   const openedForm = document.querySelector('#noteForm');
   if (openedForm) {
     closeForm();
@@ -77,8 +109,10 @@ export const openNoteForm = e => {
 
   elem.insertAdjacentHTML(place, noteForm(type, name, category, content));
 
-  const closeRtn = document.querySelector('#closeEditForm');
-  closeRtn.addEventListener('click', closeForm);
+  const closeBtn = document.querySelector('#closeEditForm');
+  const doneBtn = document.querySelector('#done');
+  closeBtn.addEventListener('click', closeForm);
+  doneBtn.addEventListener('click', onDoneBtnClick);
 
   datePicker = datepicker('#datePicker', datepickerOptions);
 };
@@ -88,4 +122,5 @@ export function closeForm() {
   datePicker.remove();
   openedForm.remove();
   datePicker = null;
+  editableNote = null;
 }

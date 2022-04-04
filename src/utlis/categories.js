@@ -3,6 +3,7 @@ export const defaultCategory = 'Task';
 
 export const categoryCounter = {};
 export const archiveCategoryCounter = {};
+export const categoriesIcon = {};
 
 categories.map(category => {
   categoryCounter[category] = 0;

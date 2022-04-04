@@ -6,7 +6,7 @@ export function getFormatDate(date = new Date()) {
 }
 
 export function setCurrentDate(e) {
-  const currentDate = e.target.closest('tr').querySelector('.date').textContent;
+  const currentDate = e.target.closest('tr').querySelector('.date').textContent.slice(-10);
   if (currentDate) {
     const day = currentDate.split('.')[0];
     const month = currentDate.split('.')[1];
