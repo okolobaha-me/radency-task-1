@@ -24,7 +24,7 @@ const baselineElements = [
     icon: 'teal',
     name: 'clean room',
     category: 'Task',
-    content: '',
+    content: 'i should clean my room',
     date: '04.04.2022',
   },
   {

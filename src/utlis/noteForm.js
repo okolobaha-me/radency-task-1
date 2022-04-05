@@ -3,6 +3,7 @@ import { getFormatDate, setCurrentDate } from './instruments';
 import datepicker from 'js-datepicker';
 import { refs } from './refs';
 import { renderNote } from './rederNote';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 let datePicker = null;
 let editableNote = null;
@@ -53,26 +54,30 @@ const onDoneBtnClick = e => {
   const content = form.querySelector('#noteContent').value;
   const newDate = form.querySelector('#datePicker').value;
 
-  const formType = e.target.getAttribute('data-type');
-  if (formType === 'done-add') {
-    renderNote(name, category, content, newDate, refs.notesBody);
+  if (!name || !content) {
+    Notify.failure('fill name ant content fields');
   } else {
-    editableNote.querySelector('.name').textContent = name;
-    editableNote.querySelector('.category').textContent = category;
-    editableNote.querySelector('.content').textContent = content;
-    editableNote.querySelector('img').setAttribute('src', categories[category]);
-
-    let date = editableNote.querySelector('.date').textContent.slice(-10);
-    const dateField = editableNote.querySelector('.date');
-    if (date) {
-      date = date === newDate ? date : `${date} => ${newDate}`;
-      dateField.textContent = date;
+    const formType = e.target.getAttribute('data-type');
+    if (formType === 'done-add') {
+      renderNote(name, category, content, newDate, refs.notesBody);
     } else {
-      dateField.textContent = newDate;
-    }
-  }
+      editableNote.querySelector('.name').textContent = name;
+      editableNote.querySelector('.category').textContent = category;
+      editableNote.querySelector('.content').textContent = content;
+      editableNote.querySelector('img').setAttribute('src', categories[category]);
 
-  closeForm();
+      let date = editableNote.querySelector('.date').textContent.slice(-10);
+      const dateField = editableNote.querySelector('.date');
+      if (date) {
+        date = date === newDate ? date : `${date} => ${newDate}`;
+        dateField.textContent = date;
+      } else {
+        dateField.textContent = newDate;
+      }
+    }
+
+    closeForm();
+  }
 };
 
 export const openNoteForm = e => {
