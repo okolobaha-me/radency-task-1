@@ -1,7 +1,7 @@
 import { refs } from './refs';
-import { deleteNote, updateCounter, updateCounterTable } from './instruments';
+import { deleteNote, updateCounter } from './instruments';
 
-const editBtn = '<button type="button" data-type="edit">edit</button>';
+const editBtn = '<button type="button" class="button" data-type="edit">edit</button>';
 
 export function archive(target) {
   const note = target.closest('tr');

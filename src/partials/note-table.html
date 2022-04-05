@@ -1,17 +1,19 @@
 <div class="container">
   <table class="table" id="noteTable">
     <thead>
-      <tr>
-        <th class="table__header-column">Name</th>
-        <th class="table__header-column">Created</th>
-        <th class="table__header-column">Category</th>
-        <th class="table__header-column">Content</th>
-        <th class="table__header-column">Dates</th>
-        <th class="table__header-column">Option</th>
+      <tr class="table__header">
+        <th class="table__header-column name">Name</th>
+        <th class="table__header-column created-date">Created</th>
+        <th class="table__header-column category">Category</th>
+        <th class="table__header-column content">Content</th>
+        <th class="table__header-column dates">Dates</th>
+        <th class="table__header-column option">Option</th>
       </tr>
     </thead>
-    <tbody id="notesBody"></tbody>
+    <tbody id="notesBody" class="table__body"></tbody>
   </table>
 
-  <button type="button" data-type="addNote">add note</button>
+  <button type="button" data-type="addNote" class="add-btn">
+    <img src="../src/icons/add-plus.svg" alt="" width="40px" />
+  </button>
 </div>

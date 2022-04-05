@@ -1,20 +1,14 @@
 .container {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 20px 10px;
-}
-
-.table {
-  width: 100%;
-  text-align: center;
-
-  &__header-column {
-    @extend %column;
-
-    background-color: var(--main-table-head-color);
-  }
+  padding: 10px;
 }
 
 .isHidden {
   display: none;
+}
+
+body {
+  background-color: #001228;
+  color: white;
 }

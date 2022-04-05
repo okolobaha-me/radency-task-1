@@ -37,10 +37,10 @@ const noteForm = (type, prevName, prevCategory, prevContent) => {
        <input type="text" name="Dates" id="datePicker" />
      </td>
      <td>
-       <button type="button" data-type="done-${type}" id="done">
+       <button type="button" data-type="done-${type}" id="done" class="button">
          done
        </button>
-       <button type="button" id="closeEditForm">
+       <button type="button" id="closeEditForm" class="button">
          cansel
        </button>
      </td>

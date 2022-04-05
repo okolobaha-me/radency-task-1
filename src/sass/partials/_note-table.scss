@@ -1,8 +1,64 @@
-textarea {
-  resize: none;
+.table {
+  width: 100%;
+  text-align: center;
+  color: var(--main-contrast-color);
+  border-spacing: 0;
+
+  &__header-column {
+    background-color: var(--main-table-head-color);
+
+    &:last-child {
+      border-radius: 0 10px 0 0;
+    }
+    &:first-child {
+      border-radius: 10px 0 0 0;
+    }
+  }
+
+  &__body {
+    background-color: #fff;
+    color: #212121;
+  }
 }
 
-.table__header-column.name {
-  color: red;
-  font-size: 100px;
+.add-btn {
+  width: 100%;
+  border-radius: 0 0 10px 10px;
+  background-color: #67af1c;
+  border: none;
+  font-size: 50px;
+  line-height: 1.1;
+  padding: 0;
+}
+
+svg {
+  fill: #001228;
+}
+
+.note-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.round {
+  overflow: hidden;
+
+  border-radius: 10px;
+}
+th,
+td {
+  @extend %column;
+}
+
+.button {
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: var(--main-table-head-color);
+  color: var(--main-contrast-color);
+  font-weight: bold;
+}
+textarea {
+  resize: none;
 }
